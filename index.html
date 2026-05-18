@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Página de Ciches</title>
+</head>
+<body>
+
+    <main>
+        <h1>Vehículos</h1>
+        <h3>Gestor de vehículos para una empresa de alquiler</h3>
+        <section class="mainSection">
+            <button class="btn-loadVehicles">Cargar Vehículos</button>
+
+            <section class="vehicles">
+                <div class="addVehicles">
+                    <h4>Añadir un Vehículo</h4>
+
+                    <form id="vehicleForm">
+                        <div class="formGroup">
+                            <label>Tipo de vehículo</label>
+                            <select name="vehicleType" id="vehicleType">
+                                <option value="" disabled selected>Selecciona una opción</option>
+                                <option value="coche">Coche</option>
+                                <option value="moto">Moto / Motocicleta</option>
+                                <option value="camion">Camión</option>
+                            </select>
+                        </div>
+
+                        <div class="formGroup">
+                            <label>Marca del vehículo</label>
+                            <input type="text" placeholder="Marca" id="vehicleBrand">
+                        </div>
+
+                        <div class="formGroup">
+                            <label>Modelo del vehículo</label>
+                            <input type="text" placeholder="Modelo" id="vehicleModel">
+                        </div>
+
+                        <div class="formGroup">
+                            <label>Año del vehículo</label>
+                            <input type="number" placeholder="Año" id="vehicleYear">
+                        </div>
+
+                        <div class="formGroup" id="dinamicField">
+                        </div>
+                        
+                    </form>
+
+                    <button type="submit" class="btn-addVehicles">Añadir Vehículo</button>
+                </div>
+
+                <div class="showVehicles">
+                    <div class="vehicleList" id="vehicleList"></div>
+                </div>
+            </section>
+
+        </section>
+    </main>
+
+    <script src="js/baseDeDatos.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
