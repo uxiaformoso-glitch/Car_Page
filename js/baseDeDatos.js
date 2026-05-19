@@ -31,10 +31,33 @@ class Truck extends Vehicle {
     }
 }
 
-let dataBase = [
-    new Car("Seat", "Ibiza", 2015, 4),
-    new Motorbike("Yamaha", "GF", 2020, 600)
-];
+//Initialize DB
+let dataBase = [];
+
+function initializeDB() {
+    const savedData = localStorage.getItem('myVehicles');
+
+    if (savedData) {
+        const plainObjects = JSON.parse(savedData);
+
+        dataBase = plainObjects.map(v => {
+            if (v.type === 'coche') return new Car(v.brand, v.model, v.year, v.door, v.id);
+            if (v.type === 'moto') return new Motorbike(v.brand, v.model, v.year, v.typeMoto, v.id);
+            if (v.type === 'camion') return new Truck(v.brand, v.model, v.year, v.weigth, v.id);
+        });
+    } else {
+        //Default data
+        dataBase = [
+            new Car("Seat", "Ibiza", 2015, 4),
+            new Motorbike("Yamaha", "GT", 2020, 600)
+        ];
+        saveOnLocalStorage();
+    }
+}
+
+function saveOnLocalStorage() {
+    localStorage.setItem('myVehicles', JSON.stringify(dataBase));
+}
 
 //CRUD functions required
 function loadVehiclesDB(){
@@ -43,8 +66,12 @@ function loadVehiclesDB(){
 
 function insertVehicleDB(vehicle) {
     dataBase.push(vehicle);
+    saveOnLocalStorage();
 }
 
 function deleteVehicleDB(id){
     dataBase = dataBase.filter(vehicle => vehicle.id !== id);
+    saveOnLocalStorage();
 }
+
+initializeDB();
